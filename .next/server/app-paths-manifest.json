@@ -1,0 +1,7 @@
+{
+  "/page": "app/page.js",
+  "/events/page": "app/events/page.js",
+  "/council/page": "app/council/page.js",
+  "/teams/page": "app/teams/page.js",
+  "/regional-leaders/page": "app/regional-leaders/page.js"
+}

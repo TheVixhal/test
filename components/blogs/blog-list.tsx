@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+
 import { format } from "date-fns"
 
 const blogs = [
@@ -23,27 +24,29 @@ const blogs = [
 
 export function BlogList() {
   return (
-    <div className="grid gap-6">
-      {blogs.map((blog) => (
-        <Card key={blog.id}>
-          <CardHeader>
-            <div className="flex items-center gap-4">
-              <Avatar>
-                <AvatarFallback>{blog.author[0]}</AvatarFallback>
-              </Avatar>
-              <div>
-                <CardTitle className="text-xl">{blog.title}</CardTitle>
-                <p className="text-sm text-muted-foreground">
-                  By {blog.author} • {format(blog.createdAt, "PPP")}
-                </p>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground">{blog.content}</p>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  )
+    
+        <div className="grid gap-6">
+          {blogs.map((blog) => (
+            <Card key={blog.id}>
+              <CardHeader>
+                <div className="flex items-center gap-4">
+                  <Avatar>
+                    <AvatarFallback>{blog.author[0]}</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <CardTitle className="text-xl">{blog.title}</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                      By {blog.author} • {format(blog.createdAt, "PPP")}
+                    </p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">{blog.content}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+       
+  ) 
 }

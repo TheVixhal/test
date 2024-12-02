@@ -1,5 +1,7 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { TeamSection } from "@/components/teams/team-section"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TeamSection } from "@/components/teams/team-section";
+
+const teamTypes = ["webops", "management", "content", "pr", "design"] as const;
 
 export default function TeamsPage() {
   return (
@@ -10,18 +12,23 @@ export default function TeamsPage() {
 
       <Tabs defaultValue="webops" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="webops">WebOps</TabsTrigger>
-          <TabsTrigger value="management">Management</TabsTrigger>
-          <TabsTrigger value="content">Content</TabsTrigger>
-          <TabsTrigger value="pr">PR</TabsTrigger>
-          <TabsTrigger value="design">Design</TabsTrigger>
+          {teamTypes.map((team) => (
+            <TabsTrigger key={team} value={team}>
+              {capitalize(team)}
+            </TabsTrigger>
+          ))}
         </TabsList>
-        {["webops", "management", "content", "pr", "design"].map((team) => (
+
+        {teamTypes.map((team) => (
           <TabsContent key={team} value={team}>
             <TeamSection teamType={team} />
           </TabsContent>
         ))}
       </Tabs>
     </div>
-  )
+  );
+}
+
+function capitalize(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
 }
