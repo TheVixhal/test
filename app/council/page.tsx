@@ -9,9 +9,7 @@ export default function CouncilPage() {
       </div>
 
       <Card>
-        <CardHeader>
-          <CardTitle>Council Members</CardTitle>
-        </CardHeader>
+        
         <CardContent>
           <CouncilMembers />
         </CardContent>

@@ -61,7 +61,7 @@ export default function Sidebar() {
   return (
     <div
       className={cn(
-        "relative flex flex-col h-full bg-card text-card-foreground transition-all duration-300",
+        "relative flex flex-col h-full bg-card text-card-foreground transition-all duration-300 shadow shadow-white",
         isCollapsed ? "w-16" : "w-64" // Increased sidebar width
       )}
     >
@@ -91,8 +91,16 @@ export default function Sidebar() {
       </div>
 
       <ScrollArea className="flex-1 px-3">
-        <div className="space-y-2 py-4">{renderedRoutes}</div> {/* Increased spacing between items */}
+        <div className="space-y-5 py-5">{renderedRoutes}</div> {/* Increased spacing between items */}
       </ScrollArea>
+
+      {/* Footer */}
+      {!isCollapsed && (
+        <div className="p-4 text-center text-sm text-muted-foreground">
+          Made with <span className="text-red-500">❤️</span> by Vixhal
+        </div>
+      )}
+    
     </div>
   );
 }

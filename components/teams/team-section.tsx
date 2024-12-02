@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const teamMembers = {
   webops: [
-    { name: "Alex Turner", role: "Team Lead", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e" },
+    { name: "Vishal Singh Baraiya", role: "WebDev", image: "https://media.licdn.com/dms/image/v2/D4D03AQH2eBdxOJOj9g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1707373300404?e=1738195200&v=beta&t=ADB22M6O4jeGQanvjMdPvcmranUFSHb_bUyGTyd6jdE" },
     { name: "Emma Watson", role: "Developer", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330" }
   ],
   management: [

@@ -10,7 +10,7 @@ export default function RegionalLeadersPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Regional Representatives</CardTitle>
+          <CardTitle></CardTitle>
         </CardHeader>
         <CardContent>
           <RegionalLeadersList />
