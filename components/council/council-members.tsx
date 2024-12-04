@@ -14,7 +14,7 @@ const councilMembers = [
   {
     name: 'Abhay',
     role: 'Deputy Secretary',
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQGfHgTUab-3dg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1708969125364?e=1738195200&v=beta&t=GDGXKWaAhc0-byWDLwweSD_3gwCiNkkI4ab8goFSuKI',
+    image: 'https://i.ibb.co/2ZMNKdy/Whats-App-Image-2024-12-03-at-11-49-10.jpg',
     email: 'nallamala-ds@ds.study.iitm.ac.in',
     phone: '+91 (555) 234-5678',
     linkedin: 'linkedin.com/in/'
