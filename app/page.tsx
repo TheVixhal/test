@@ -47,25 +47,25 @@ export default function Home() {
               In this house, we don’t just belong. We create, we inspire, and we lead.
             </p>
             <div className="flex justify-center items-center gap-4 mx-auto mt-8">
-              <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
-                <button className="bg-indigo-600 bg-opacity-20 text-white px-8 py-3 border-2 rounded-lg border-white rounded-lg text-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center gap-2">
+              <a href="https://www.instagram.com/housenallamala/" target="_blank" rel="noopener noreferrer">
+                <button className="bg-indigo-600 bg-opacity-20 text-white px-8 py-3 border-2 rounded-lg border-white rounded-lg text-lg font-semibold hover:bg-purple-700 transition-colors flex items-center gap-2">
                   <img
-                    src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6ca814282eca7172c6_icon_clyde_white_RGB.svg"
+                    src="instagram.svg"
                     alt="Discord Logo"
                     className="w-12 h-8"
                   />
-                  Discord
+                  Instagram
                 </button>
               </a>
 
-              <a href="" target="_blank" rel="noopener noreferrer">
-                <button className="bg-indigo-600 bg-opacity-20 text-white px-8 py-3 border-2 border-white rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors flex items-center gap-2">
+              <a href="https://www.linkedin.com/company/nallamala-house-iit-madras" target="_blank" rel="noopener noreferrer">
+                <button className="bg-indigo-600 bg-opacity-20 text-white px-8 py-3 border-2 border-white rounded-lg text-lg font-semibold hover:bg-cyan-700 transition-colors flex items-center gap-2">
                   <img
-                    src="whatsapp-svgrepo-com (2).svg"
+                    src="linkin.svg"
                     alt="WhatsApp Logo"
-                    className="w-12 h-8"
+                    className="w-12 h-8 text-white"
                   />
-                  WhatsApp
+                  LinkedIn
                 </button>
               </a>
             </div>

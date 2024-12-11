@@ -24,7 +24,9 @@ import {
   ChevronUp,
   LucideIcon,
   Map,
-  Users
+  Users,
+  Clock,
+  Star
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -43,16 +45,26 @@ const routes: RouteItem[] = [
   { label: "Events", icon: Calendar, href: "/events" },
   { label: "Blogs", icon: BookOpen, href: "/blogs" },
   { 
-    label: "UHC", 
-    icon: Building2, // Changed from Users to Award
+    label: " Present UHC", 
+    icon: Building2, 
     children: [
       { label: "Council", icon: Award, href: "/council" },
       { label: "Teams", icon: Users, href: "/teams" },
       { label: "Regional Leaders", icon: Map, href: "/regional-leaders" }
     ]
   },
+  { 
+    label: " Previous UHCs", 
+    icon: Clock, 
+    children: [
+      { label: "2023-2024", icon: Star, href: "https://sites.google.com/student.onlinedegree.iitm.ac.in/nallamala/house-council/2023-24" },
+      { label: "2022-2023", icon: Star, href: "https://sites.google.com/student.onlinedegree.iitm.ac.in/nallamala/house-council/2022-23" },
+      { label: "2021-2022", icon: Star, href: "https://sites.google.com/student.onlinedegree.iitm.ac.in/nallamala/house-council/2021-22" }
+    ]
+  },
+
   { label: "Club Leaders", icon: Building2, href: "/club-leaders" },
-  { label: "Admin", icon: Settings, href: "/admin" },
+  { label: "Admin Panel", icon: Settings, href: "/admin" },
 ];
 
 export default function Sidebar(): JSX.Element {

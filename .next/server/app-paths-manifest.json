@@ -1,8 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js",
-  "/regional-leaders/page": "app/regional-leaders/page.js",
-  "/teams/page": "app/teams/page.js",
-  "/council/page": "app/council/page.js",
-  "/club-leaders/page": "app/club-leaders/page.js"
+  "/page": "app/page.js"
 }
