@@ -2,75 +2,144 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { 
+  Collapsible, 
+  CollapsibleContent, 
+  CollapsibleTrigger 
+} from "@/components/ui/collapsible";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import { 
   Home, 
   Calendar, 
   BookOpen, 
-  Users, 
+  Award, // Changed from Users
   Briefcase, 
   Flag, 
   Building2, 
   ChevronLeft, 
   ChevronRight,
-  Settings 
+  Settings,
+  ChevronDown,
+  ChevronUp,
+  LucideIcon,
+  Map,
+  Users
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 
-const routes = [
+// Define types for routes
+type RouteItem = {
+  label: string;
+  icon: LucideIcon;
+  href?: string;
+  children?: RouteItem[];
+};
+
+const routes: RouteItem[] = [
   { label: "Home", icon: Home, href: "/" },
   { label: "Events", icon: Calendar, href: "/events" },
   { label: "Blogs", icon: BookOpen, href: "/blogs" },
-  { label: "Council", icon: Users, href: "/council" },
-  { label: "Teams", icon: Briefcase, href: "/teams" },
+  { 
+    label: "UHC", 
+    icon: Building2, // Changed from Users to Award
+    children: [
+      { label: "Council", icon: Award, href: "/council" },
+      { label: "Teams", icon: Users, href: "/teams" },
+      { label: "Regional Leaders", icon: Map, href: "/regional-leaders" }
+    ]
+  },
   { label: "Club Leaders", icon: Building2, href: "/club-leaders" },
-  { label: "Regional Leaders", icon: Flag, href: "/regional-leaders" },
   { label: "Admin", icon: Settings, href: "/admin" },
 ];
 
-export default function Sidebar() {
+export default function Sidebar(): JSX.Element {
   const pathname = usePathname();
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+  const [openDropdowns, setOpenDropdowns] = useState<{[key: string]: boolean}>({});
 
-  const renderedRoutes = useMemo(() => {
-    return routes.map((route) => (
-      <Button
-        key={route.href}
-        variant={pathname === route.href ? "secondary" : "ghost"}
-        className={cn(
-          "w-full justify-start",
-          pathname === route.href && "bg-secondary",
-          isCollapsed && "px-2",
-          // Increased padding and larger text
-          "py-4 text-lg"
-        )}
-        asChild
-      >
-        {/* Link component with prefetching */}
-        <Link href={route.href} aria-label={route.label} prefetch={true}>
-          <route.icon className={cn("h-6 w-6", !isCollapsed && "mr-4")} />
-          {!isCollapsed && route.label}
-        </Link>
-      </Button>
-    ));
-  }, [pathname, isCollapsed]);
+  const toggleDropdown = (label: string): void => {
+    setOpenDropdowns(prev => ({
+      ...prev,
+      [label]: !prev[label]
+    }));
+  };
+
+  const renderRoutes = (routeList: RouteItem[], level: number = 0): JSX.Element[] => {
+    return routeList.map((route) => {
+      // Check if route has children (dropdown)
+      if (route.children) {
+        const isOpen = openDropdowns[route.label];
+        return (
+          <Collapsible 
+            key={route.label} 
+            open={isOpen} 
+            onOpenChange={() => toggleDropdown(route.label)}
+          >
+            <CollapsibleTrigger asChild>
+              <Button
+                variant={pathname?.startsWith(`/${route.label.toLowerCase().replace(' ', '-')}`) ? "secondary" : "ghost"}
+                className={cn(
+                  "w-full justify-start",
+                  pathname?.startsWith(`/${route.label.toLowerCase().replace(' ', '-')}`) && "bg-secondary",
+                  isCollapsed && "px-2",
+                  "py-4 text-lg"
+                )}
+              >
+                <route.icon className={cn("h-6 w-6", !isCollapsed && "mr-4")} />
+                {!isCollapsed && (
+                  <div className="flex items-center justify-between w-full">
+                    {route.label}
+                    {isOpen ? <ChevronUp className="h-4 w-4 ml-2" /> : <ChevronDown className="h-4 w-4 ml-2" />}
+                  </div>
+                )}
+              </Button>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              {!isCollapsed && renderRoutes(route.children, level + 1)}
+            </CollapsibleContent>
+          </Collapsible>
+        );
+      }
+
+      // Regular route
+      return (
+        <Button
+          key={route.href}
+          variant={pathname === route.href ? "secondary" : "ghost"}
+          className={cn(
+            "w-full justify-start",
+            pathname === route.href && "bg-secondary",
+            isCollapsed && "px-2",
+            level > 0 && "pl-8", // Indent nested routes
+            "py-4 text-lg"
+          )}
+          asChild
+        >
+          <Link href={route.href || '/'} aria-label={route.label} prefetch={true}>
+            <route.icon className={cn("h-6 w-6", !isCollapsed && "mr-4")} />
+            {!isCollapsed && route.label}
+          </Link>
+        </Button>
+      );
+    });
+  };
 
   return (
     <div
       className={cn(
         "z-10 fixed flex flex-col h-full bg-card text-card-foreground transition-all duration-300 shadow shadow-white",
-        isCollapsed ? "w-16" : "w-64" // Increased sidebar width
+        isCollapsed ? "w-16" : "w-64"
       )}
     >
       <div className="p-4 flex items-center">
         {!isCollapsed && (
           <Image
-            src="Nallamala-House.png"
+            src="/Nallamala-House.png"
             alt="Nallamala House Logo"
-            className="rounded-full ring-yellow-500 ring-offset-0 ring-1 h-[120px] w-[120px] ml-10" // Larger image
+            className="rounded-full ring-yellow-500 ring-offset-0 ring-1 h-[120px] w-[120px] ml-10"
             width={120}
             height={120}
           />
@@ -91,7 +160,9 @@ export default function Sidebar() {
       </div>
 
       <ScrollArea className="flex-1 px-3">
-        <div className="space-y-5 py-5">{renderedRoutes}</div> {/* Increased spacing between items */}
+        <div className="space-y-5 py-5">
+          {renderRoutes(routes)}
+        </div>
       </ScrollArea>
 
       {/* Footer */}
@@ -100,7 +171,6 @@ export default function Sidebar() {
           Made with <span className="text-red-500">❤️</span> by Vishal Baraiya
         </div>
       )}
-    
     </div>
   );
 }
