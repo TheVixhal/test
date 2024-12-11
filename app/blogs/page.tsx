@@ -1,8 +1,8 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { BlogList } from "@/components/blogs/blog-list"
-import { WavyBackground } from "@/components/ui/wavy-background";
+import { Card, CardContent} from "@/components/ui/card"
+import BlogList  from "@/components/blogs/blog-list"
+
 
 export default function BlogsPage() {
   return (
@@ -15,9 +15,7 @@ export default function BlogsPage() {
           
           <Card>
             
-            <CardHeader>
-              <CardTitle>Latest Posts</CardTitle>
-            </CardHeader>
+            
              
             <CardContent>
               <BlogList />

@@ -2,8 +2,8 @@
 export default function VideoPlayer() {
     return (
       <video
-        src="11056560-hd_1920_1080_60fps.mp4"
-        className="absolute top-0 left-0 w-fit h-fit object-cover z-0"
+        src="https://cdn.pixabay.com/video/2019/04/11/22763-330176895_large.mp4"
+        className="z-0 relative top-0 left-0 w-full h-full object-cover object-left"
         autoPlay
         loop
         muted

@@ -1,31 +1,32 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Building2, Mail, Phone, Linkedin } from 'lucide-react';
+// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Mail, Phone, Linkedin } from 'lucide-react';
+import { Cover } from "@/components/ui/cover";
 
 const councilMembers = [
   {
     name: 'Naman Shyamsukha',
     role: 'Secretary',
-    image: 'https://media.licdn.com/dms/image/v2/C4D03AQHK6plqORqoGQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1656958027262?e=1738195200&v=beta&t=fVVutmRRm2lLtMdpKRPpnStzgFVaVnXtiUUeEK2DaRA',
+    image: 'https://i.ibb.co/QQ4j9b4/Screenshot-2024-12-11-141436.png',
     email: 'nallamala-sec@ds.study.iitm.ac.in',
-    phone: '+91 (555) 123-4567',
-    linkedin: 'linkedin.com/in/'
+    phone: '+91 79985 55833',
+    linkedin: 'https://www.linkedin.com/in/namanshyamsukha/'
   },
   {
     name: 'Abhay',
     role: 'Deputy Secretary',
     image: 'https://i.ibb.co/2ZMNKdy/Whats-App-Image-2024-12-03-at-11-49-10.jpg',
     email: 'nallamala-ds@ds.study.iitm.ac.in',
-    phone: '+91 (555) 234-5678',
+    phone: '+91 89554 27212',
     linkedin: 'linkedin.com/in/'
   },
   {
     name: 'Keshava Krishnan',
     role: 'Web Admin',
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQFl53VXSSXUKQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1726765355016?e=1738195200&v=beta&t=ulsNTpH1jRq9oO6jUEBIP1IsN9NjoKoEuGPCmnhP1Z4',
+    image: 'https://i.ibb.co/t3WtXVk/Screenshot-2024-12-11-141832.png',
     email: 'nallamala-webad@ds.study.iitm.ac.in ',
-    phone: '+91 (555) 345-6789',
-    linkedin: 'linkedin.com/in/'
+    phone: '+91 85559 67584',
+    linkedin: 'https://www.linkedin.com/in/kln12/'
   }
  
 ]
@@ -54,11 +55,11 @@ export function CouncilMembers() {
               className="bg-transparent rounded-xl overflow-hidden shadow-white shadow hover:shadow-lg transition-shadow"
             >
               <div className="h-60 overflow-hidden">
-                <img
+                <Cover><img
                   src={member.image}
                   alt={member.name}
                   className="w-fit h-fit object-cover"
-                />
+                /></Cover>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-1">{member.name}</h3>

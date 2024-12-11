@@ -1,7 +1,7 @@
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 // import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
-import { MapPin, Mail, Link } from 'lucide-react';
+import { Cover } from "@/components/ui/cover";
+import { Mail, Link } from 'lucide-react';
 
 const regions = [
   {
@@ -35,9 +35,9 @@ const regions = [
     }
   },
   {
-    name: 'Bengluru Region',
+    name: 'Bengaluru Region',
     leader: {
-      name: 'Harikrishna D',
+      name: 'Harikrishnan D',
       image: 'https://drive.google.com/thumbnail?id=1T-VT3lUpJDbRujG6cCTt3nSqqNpXyy1U&sz=w1000',
       email: '23f3000295@ds.study.iitm.ac.in',
       group: 'https://tinyurl.com/4t2eder',
@@ -132,9 +132,9 @@ export function RegionalLeadersList() {
       <div className="max-w-6xl mx-auto">
         
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {regions.map((region, index) => (
-            <div
+           <div
               key={index}
               className="bg-black rounded-xl overflow-hidden shadow shadow-white hover:scale-[1.02] transition-transform"
             >
@@ -146,11 +146,11 @@ export function RegionalLeadersList() {
               {/* Leader Information */}
               <div className="p-6">
                 <div className="flex items-center mb-6">
-                  <img
+                 <Cover> <img
                     src={region.leader.image}
                     alt={region.leader.name}
                     className="w-20 h-20 rounded-full object-cover"
-                  />
+                  /></Cover>
                  
                   <div className="ml-4">
                     <h4 className="font-semibold">{region.leader.name}</h4>

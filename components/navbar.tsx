@@ -8,9 +8,9 @@ import { ThemeToggle } from "@/components/theme-toggle"
 export default function Navbar() {
   return (
     <div className="border-b">
-      <div className="flex h-16 items-center px-4">
+      <div className="relative flex h-16 items-center px-4">
         <Building className="h-8 w-8 mr-2" />
-        <h1 className="text-xl font-bold mr-8">Nallamala House</h1>
+        <h1 className="text-xl font-bold mr-8">Nallamala</h1>
         <div className="flex-1">
           <form>
             <div className="relative">

@@ -33,7 +33,7 @@ const routes = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const renderedRoutes = useMemo(() => {
     return routes.map((route) => (
@@ -61,14 +61,14 @@ export default function Sidebar() {
   return (
     <div
       className={cn(
-        "relative flex flex-col h-full bg-card text-card-foreground transition-all duration-300 shadow shadow-white",
+        "z-10 fixed flex flex-col h-full bg-card text-card-foreground transition-all duration-300 shadow shadow-white",
         isCollapsed ? "w-16" : "w-64" // Increased sidebar width
       )}
     >
       <div className="p-4 flex items-center">
         {!isCollapsed && (
           <Image
-            src="06-Nallamala-large (1).png"
+            src="Nallamala-House.png"
             alt="Nallamala House Logo"
             className="rounded-full ring-yellow-500 ring-offset-0 ring-1 h-[120px] w-[120px] ml-10" // Larger image
             width={120}
@@ -97,7 +97,7 @@ export default function Sidebar() {
       {/* Footer */}
       {!isCollapsed && (
         <div className="p-4 text-center text-sm text-muted-foreground">
-          Made with <span className="text-red-500">❤️</span> by Vixhal
+          Made with <span className="text-red-500">❤️</span> by Vishal Baraiya
         </div>
       )}
     

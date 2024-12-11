@@ -4,23 +4,28 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 const teamMembers = {
   webops: [
     { name: "Vishal Singh Baraiya", role: "WebDev", image: "https://media.licdn.com/dms/image/v2/D4D03AQH2eBdxOJOj9g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1707373300404?e=1738195200&v=beta&t=ADB22M6O4jeGQanvjMdPvcmranUFSHb_bUyGTyd6jdE" },
-    { name: "Emma Watson", role: "Developer", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330" }
+    //{ name: "Emma Watson", role: "Developer", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330" }
   ],
   management: [
-    { name: "David Kim", role: "Manager", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" },
-    { name: "Lisa Chen", role: "Coordinator", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80" }
+    { name: "Aishwanee Basu ", role: "Management Member", image: "https://i.ibb.co/SrZpYNg/Screenshot-2024-12-11-145255.png" },
+    { name: "Satyam Saurabh ", role: "Management Member", image: "https://i.ibb.co/V91jvDX/Screenshot-2024-12-11-145439.png" },
+    { name: "Raiyan Ahmed ", role: "Management Member", image: "https://i.ibb.co/FWmn1xj/Screenshot-2024-12-11-145610.png" },
+    { name: "Nikhil Kumar ", role: "Management Member", image: "https://i.ibb.co/8sRfWLG/Screenshot-2024-12-11-145842.png" }
+    
   ],
   content: [
-    { name: "James Wilson", role: "Content Lead", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e" },
-    { name: "Sophie Brown", role: "Writer", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2" }
+    { name: "Ashutosh Solanke", role: "Content", image: "https://i.ibb.co/jGfMpnR/Screenshot-2024-12-11-144012.png" },
+    { name: "Priyanka Dalal", role: "Content", image: "https://i.ibb.co/92JF775/Screenshot-2024-12-11-144409.png" },
+    { name: "Vanshika Tiwari", role: "Content", image: "https://i.ibb.co/zr8PSdd/Screenshot-2024-12-11-144750.png" }
+    
   ],
   pr: [
     { name: "Maria Garcia", role: "PR Head", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9" },
     { name: "Tom Harris", role: "Coordinator", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e" }
   ],
   design: [
-    { name: "Nina Patel", role: "Design Lead", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330" },
-    { name: "Chris Lee", role: "Designer", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" }
+    { name: "Kundan Kumar ", role: "Design Team Member", image: "https://i.ibb.co/0p7PFsq/Screenshot-2024-12-11-150445.png" },
+    { name: "Anindya Mukhopadhyay ", role: "Designe Team Member", image: "https://i.ibb.co/sPNXPdt/Screenshot-2024-12-11-150555.png" }
   ]
 }
 
@@ -42,7 +47,7 @@ export function TeamSection({ teamType }: { teamType: keyof typeof teamMembers }
                 <CardTitle className="mt-4">{member.name}</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-lg font-medium text-primary">{member.role}</p>
+                <p className="text-cyan-600 text-primary">{member.role}</p>
               </CardContent>
             </Card>
           ))}
