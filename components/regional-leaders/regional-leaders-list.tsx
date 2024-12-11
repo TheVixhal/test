@@ -167,32 +167,13 @@ export function RegionalLeadersList() {
                     <Mail className="w-4 h-4 mr-2" />
                     <span className="text-sm">{region.leader.email}</span>
                   </a>
-                  <a
-                    href={`${region.leader.group}`}
-                    className="flex items-center text-green-600 hover:text-indigo-600 transition-colors"
-                  >
-                    <Link className="w-4 h-4 mr-2" />
-                    <span className="text-sm">Whatsapp Regional Group</span>
-                  </a>
+                  
                   
                 
                 </div>
 
                 {/* Region Stats */}
-                <div className="grid grid-cols-3 gap-4 pt-4 border-t">
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-indigo-600">{region.stats.members}</p>
-                    <p className="text-xs text-gray-600">Members</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-indigo-600">{region.stats.events}</p>
-                    <p className="text-xs text-gray-600">Events</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-indigo-600">{region.stats.chapters}</p>
-                    <p className="text-xs text-gray-600">Rank</p>
-                  </div>
-                </div>
+                
               </div>
             </div>
           ))}

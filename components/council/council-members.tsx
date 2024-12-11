@@ -78,8 +78,7 @@ export function CouncilMembers() {
                     href={`tel:${member.phone}`}
                     className="flex items-center text-gray-600 hover:text-indigo-600 transition-colors"
                   >
-                    <Phone className="w-4 h-4 mr-2" />
-                    <span className="text-sm">{member.phone}</span>
+                    
                   </a>
                   <a
                     href={`https://${member.linkedin}`}
