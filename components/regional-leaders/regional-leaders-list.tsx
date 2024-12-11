@@ -82,7 +82,7 @@ const regions = [
   {
     name: 'Delhi Region',
     leader: {
-      name: 'Lakshay Patel',
+      name: 'Lakshya Patel',
       image: 'https://drive.google.com/thumbnail?id=1FnFKhG0oQjUTj86tLvdaBtV42p30VKYT',
       email: '23f3001274@ds.study.iitm.ac.in ',
       group: 'https://chat.whatsapp.com/BSXwalxEP7kApvqgP4WEU',
