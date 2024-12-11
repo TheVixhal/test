@@ -1,8 +1,8 @@
 {
   "app/page.tsx -> @/components/VideoPlayer": {
-    "id": 3990,
+    "id": "app/page.tsx -> @/components/VideoPlayer",
     "files": [
-      "static/chunks/990.083868de5ab9f9f4.js"
+      "static/chunks/_app-pages-browser_components_VideoPlayer_tsx.js"
     ]
   }
 }

@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST='{"app/page.tsx -> @/components/VideoPlayer":{"id":3990,"files":["static/chunks/990.083868de5ab9f9f4.js"]}}';
+self.__REACT_LOADABLE_MANIFEST="{\"app/page.tsx -> @/components/VideoPlayer\":{\"id\":\"app/page.tsx -> @/components/VideoPlayer\",\"files\":[\"static/chunks/_app-pages-browser_components_VideoPlayer_tsx.js\"]}}"

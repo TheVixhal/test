@@ -26,7 +26,7 @@ export default function RootLayout({
           name="description"
           content="Explore Nallamala House at IIT Madras."
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0" />
+        <meta name="viewport" content="width=device-width" />
         <meta name="author" content="Nallamala House Team" />
         <meta name="keywords" content="IIT Madras, Data Science, Nallamala House, BS Program, Applications, Education, Innovation, Engineering, Online Degree, BS in Data Science, Indian Institute of Technology Madras, iit jee, IIT JEE, iit madras data science course, iit madras online degree, iit madras bsc data science, online degree courses in india, iitm bs houses, nallamala, iitm bs, iitm" />
         

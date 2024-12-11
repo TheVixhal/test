@@ -1,17 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/blogs/page": "app/blogs/page.js",
-  "/club-leaders/page": "app/club-leaders/page.js",
-  "/council/page": "app/council/page.js",
-  "/events/page": "app/events/page.js",
-  "/page": "app/page.js",
-  "/regional-leaders/page": "app/regional-leaders/page.js",
-  "/teams/page": "app/teams/page.js",
-  "/admin/blogs/page": "app/admin/blogs/page.js",
-  "/admin/club-leaders/page": "app/admin/club-leaders/page.js",
-  "/admin/events/page": "app/admin/events/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/login/page": "app/admin/login/page.js",
-  "/admin/regional-leaders/page": "app/admin/regional-leaders/page.js",
-  "/admin/teams/page": "app/admin/teams/page.js"
+  "/page": "app/page.js"
 }
