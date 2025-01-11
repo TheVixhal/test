@@ -1,7 +1,7 @@
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Cover } from "@/components/ui/cover";
-import { Mail, Link } from 'lucide-react';
+import { Mail, Users, Calendar, Building2, ExternalLink } from 'lucide-react';
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const regions = [
   {
@@ -124,62 +124,83 @@ const regions = [
       chapters: 8
     }
   },
-]
+];
 
 export function RegionalLeadersList() {
   return (
-    <div className="min-h-screen">
-      <div className="max-w-6xl mx-auto">
-        
+    <div className="min-h-screen bg-gradient-to-b from-black-900 to-gray-800 py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-white mb-4">Regional Leaders</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Meet our dedicated regional coordinators who help build and nurture our community across different locations
+          </p>
+        </div>
 
-       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-8">
           {regions.map((region, index) => (
-           <div
-              key={index}
-              className="bg-black rounded-xl overflow-hidden shadow shadow-white hover:scale-[1.02] transition-transform"
-            >
-              {/* Region Header */}
-              <div className="bg-cyan-600 p-4">
-                <h3 className="text-xl font-semibold text-white">{region.name}</h3>
-              </div>
-
-              {/* Leader Information */}
-              <div className="p-6">
-                <div className="flex items-center mb-6">
-                 <Cover> <img
-                    src={region.leader.image}
-                    alt={region.leader.name}
-                    className="w-20 h-20 rounded-full object-cover"
-                  /></Cover>
-                 
-                  <div className="ml-4">
-                    <h4 className="font-semibold">{region.leader.name}</h4>
-                    <p className="text-sm text-gray-600">Regional Coordinator</p>
+            <Card key={index} className="bg-gray-800/50 border-gray-700 hover:border-cyan-500 transition-all duration-300 backdrop-blur-sm">
+              <CardHeader className="border-b border-gray-700 bg-gradient-to-r from-cyan-600 to-cyan-700 rounded-t-lg">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xl font-semibold text-white">{region.name}</h3>
+                  <Badge variant="secondary" className="bg-cyan-500/20 text-cyan-200">
+                    {region.stats.chapters} Chapters
+                  </Badge>
+                </div>
+              </CardHeader>
+              
+              <CardContent className="pt-6">
+                <div className="flex items-center space-x-4 mb-6">
+                  <Avatar className="w-20 h-20 border-2 border-cyan-500">
+                    <AvatarImage src={region.leader.image} alt={region.leader.name} />
+                    <AvatarFallback>{region.leader.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h4 className="font-semibold text-white text-lg">{region.leader.name}</h4>
+                    <p className="text-gray-400 text-sm">Regional Coordinator</p>
                   </div>
                 </div>
 
-                {/* Contact Information */}
-                <div className="space-y-3 mb-6">
-                  <a
-                    href={`mailto:${region.leader.email}`}
-                    className="flex items-center text-gray-600 hover:text-indigo-600 transition-colors"
-                  >
-                    <Mail className="w-4 h-4 mr-2" />
-                    <span className="text-sm">{region.leader.email}</span>
-                  </a>
-                  
-                  
-                
-                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center text-gray-300 hover:text-cyan-400 transition-colors">
+                    <Mail className="w-4 h-4 mr-3" />
+                    <a href={`mailto:${region.leader.email}`} className="text-sm truncate">
+                      {region.leader.email}
+                    </a>
+                  </div>
 
-                {/* Region Stats */}
-                
-              </div>
-            </div>
+                  <div className="grid grid-cols-2 gap-4 mt-6">
+                    <div className="flex items-center space-x-2 bg-gray-700/30 rounded-lg p-3">
+                      <Users className="w-4 h-4 text-cyan-400" />
+                      <div>
+                        <p className="text-xs text-gray-400">Members</p>
+                        <p className="text-white font-medium">{region.stats.members}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700/30 rounded-lg p-3">
+                      <Calendar className="w-4 h-4 text-cyan-400" />
+                      <div>
+                        <p className="text-xs text-gray-400">Events</p>
+                        <p className="text-white font-medium">{region.stats.events}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a 
+                    href={region.leader.group}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-md transition-colors"
+                  >
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    LinkedIn
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
-
