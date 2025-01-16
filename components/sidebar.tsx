@@ -13,7 +13,7 @@ import {
   Home, 
   Calendar, 
   BookOpen, 
-  Award, // Changed from Users
+  Award,
   Briefcase, 
   Flag, 
   Building2, 
@@ -45,7 +45,7 @@ const routes: RouteItem[] = [
   { label: "Events", icon: Calendar, href: "/events" },
   { label: "Blogs", icon: BookOpen, href: "/blogs" },
   { 
-    label: " Present UHC", 
+    label: "Present UHC", 
     icon: Building2, 
     children: [
       { label: "Council", icon: Award, href: "/council" },
@@ -54,7 +54,7 @@ const routes: RouteItem[] = [
     ]
   },
   { 
-    label: " Previous UHCs", 
+    label: "Previous UHCs", 
     icon: Clock, 
     children: [
       { label: "2023-2024", icon: Star, href: "https://sites.google.com/student.onlinedegree.iitm.ac.in/nallamala/house-council/2023-24" },
@@ -62,7 +62,6 @@ const routes: RouteItem[] = [
       { label: "2021-2022", icon: Star, href: "https://sites.google.com/student.onlinedegree.iitm.ac.in/nallamala/house-council/2021-22" }
     ]
   },
-
   { label: "Club Leaders", icon: Building2, href: "/club-leaders" },
   { label: "Admin Panel", icon: Settings, href: "/admin" },
 ];
@@ -70,7 +69,7 @@ const routes: RouteItem[] = [
 export default function Sidebar(): JSX.Element {
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
-  const [openDropdowns, setOpenDropdowns] = useState<{[key: string]: boolean}>({});
+  const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({});
 
   const toggleDropdown = (label: string): void => {
     setOpenDropdowns(prev => ({
@@ -81,7 +80,6 @@ export default function Sidebar(): JSX.Element {
 
   const renderRoutes = (routeList: RouteItem[], level: number = 0): JSX.Element[] => {
     return routeList.map((route) => {
-      // Check if route has children (dropdown)
       if (route.children) {
         const isOpen = openDropdowns[route.label];
         return (
@@ -130,7 +128,12 @@ export default function Sidebar(): JSX.Element {
           )}
           asChild
         >
-          <Link href={route.href || '/'} aria-label={route.label} prefetch={true}>
+          <Link
+            href={route.href || '/'}
+            aria-label={route.label}
+            prefetch={true}
+            onClick={() => setIsCollapsed(true)} // Collapse the sidebar on click
+          >
             <route.icon className={cn("h-6 w-6", !isCollapsed && "mr-4")} />
             {!isCollapsed && route.label}
           </Link>
@@ -142,7 +145,7 @@ export default function Sidebar(): JSX.Element {
   return (
     <div
       className={cn(
-        "z-10 fixed flex flex-col h-full bg-card text-card-foreground transition-all duration-300 shadow shadow-white",
+        "z-50 fixed flex flex-col h-full bg-card text-card-foreground transition-all duration-300 shadow shadow-white",
         isCollapsed ? "w-16" : "w-64"
       )}
     >
@@ -177,7 +180,6 @@ export default function Sidebar(): JSX.Element {
         </div>
       </ScrollArea>
 
-      {/* Footer */}
       {!isCollapsed && (
         <div className="p-4 text-center text-sm text-muted-foreground">
           Made with <span className="text-red-500">❤️</span> by Vishal Baraiya
