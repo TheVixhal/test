@@ -1,13 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Trophy, History, BarChart3, ChevronDown, ExternalLink } from "lucide-react";
+import { Trophy, History, BarChart3, ChevronDown, ExternalLink, Calendar } from "lucide-react";
 import { Cover } from "@/components/ui/cover";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import React, { useState } from 'react';
+import { EventList } from "@/components/events/event-list"
 
 const VideoPlayer = dynamic(() => import("@/components/VideoPlayer"), { ssr: false });
 
@@ -36,11 +37,11 @@ interface HistoryMilestone {
 // Data
 const statistics: Statistic[] = [
   {
-    label: "Overall Rank",
+    label: "Awards Won",
     value: "2",
-    suffix: "nd",
+    suffix: "",
     icon: "🏆",
-    description: "Among all houses",
+    description: "Recognition earned",
   },
   {
     label: "Active Members",
@@ -71,11 +72,11 @@ const statistics: Statistic[] = [
     description: "Annual activities",
   },
   {
-    label: "Awards Won",
-    value: "20",
+    label: "Team Size",
+    value: "10",
     suffix: "+",
     icon: "🏅",
-    description: "Recognition earned",
+    description: "Our Team",
   }
 ];
 
@@ -400,7 +401,17 @@ export default function Home() {
         <div className="space-y-24 py-24">
           <HouseHistory />
           <HouseStatistics />
+          <section className="space-y-8">
+          <header className="flex items-center">
+              <Calendar className="w-8 h-8 text-indigo-600 mr-3" />
+              <h2 className="text-3xl font-bold">Events</h2>
+              
+          </header>
+          <EventList status={"ongoing"} />
+          </section>
+          
           <FeaturedClubs />
+          
         </div>
       </div>
     </main>

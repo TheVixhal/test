@@ -12,26 +12,7 @@ const pageTransition = {
   visible: { opacity: 1, y: 0 }
 }
 
-const statsData = [
-  {
-    icon: Calendar,
-    label: "Total Events",
-    value: "15",
-    description: "Events this month"
-  },
-  {
-    icon: Clock,
-    label: "Upcoming",
-    value: "8",
-    description: "Next two weeks"
-  },
-  {
-    icon: Users,
-    label: "Participants",
-    value: "450+",
-    description: "Active registrations"
-  }
-]
+
 
 const StatsCard = ({ icon: Icon, label, value, description }: {
   icon: any
@@ -66,23 +47,12 @@ export default function EventsPage() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">Events Dashboard</h2>
+            <h2 className="text-3xl font-bold tracking-tight">Events</h2>
             <p className="text-muted-foreground">Manage and track all your events in one place</p>
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
-          {statsData.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <StatsCard {...stat} />
-            </motion.div>
-          ))}
-        </div>
+        
       </div>
       
       <Tabs defaultValue="upcoming" className="space-y-6">

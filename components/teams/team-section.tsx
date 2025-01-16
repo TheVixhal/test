@@ -1,53 +1,122 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { useEffect, useState } from "react"
+import { Loader2 } from "lucide-react"
 
-const teamMembers = {
-  webops: [
-    { name: "Vishal Singh Baraiya", role: "WebDev", image: "https://media.licdn.com/dms/image/v2/D4D03AQH2eBdxOJOj9g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1707373300404?e=1738195200&v=beta&t=ADB22M6O4jeGQanvjMdPvcmranUFSHb_bUyGTyd6jdE" },
-    //{ name: "Emma Watson", role: "Developer", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330" }
-  ],
-  management: [
-    { name: "Aishwanee Basu ", role: "Management Member", image: "https://i.ibb.co/SrZpYNg/Screenshot-2024-12-11-145255.png" },
-    { name: "Satyam Saurabh ", role: "Management Member", image: "https://i.ibb.co/V91jvDX/Screenshot-2024-12-11-145439.png" },
-    { name: "Raiyan Ahmed ", role: "Management Member", image: "https://i.ibb.co/FWmn1xj/Screenshot-2024-12-11-145610.png" },
-    { name: "Nikhil Kumar ", role: "Management Member", image: "https://i.ibb.co/8sRfWLG/Screenshot-2024-12-11-145842.png" }
-    
-  ],
-  content: [
-    { name: "Ashutosh Solanke", role: "Content", image: "https://i.ibb.co/jGfMpnR/Screenshot-2024-12-11-144012.png" },
-    { name: "Priyanka Dalal", role: "Content", image: "https://i.ibb.co/92JF775/Screenshot-2024-12-11-144409.png" },
-    { name: "Vanshika Tiwari", role: "Content", image: "https://i.ibb.co/zr8PSdd/Screenshot-2024-12-11-144750.png" }
-    
-  ],
-  pr: [
-    { name: "Maria Garcia", role: "PR Head", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9" },
-    { name: "Tom Harris", role: "Coordinator", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e" }
-  ],
-  design: [
-    { name: "Kundan Kumar ", role: "Design Team Member", image: "https://i.ibb.co/0p7PFsq/Screenshot-2024-12-11-150445.png" },
-    { name: "Anindya Mukhopadhyay ", role: "Designe Team Member", image: "https://i.ibb.co/sPNXPdt/Screenshot-2024-12-11-150555.png" }
-  ]
+const SHEET_ID = '1lLRZ6J28xRl2Oztszko1VIbQ01ZNA9FmNgWewOKA6ck'
+const API_KEY = 'AIzaSyCxtw0FYRoykePA-RSHMWLFlMg218bR_gQ'
+const RANGE = 'Team!A2:F'
+const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`
+
+interface TeamMember {
+  name: string
+  role: string
+  image: string
+  team: string
 }
 
-export function TeamSection({ teamType }: { teamType: keyof typeof teamMembers }) {
+export function TeamSection({ teamType }: { teamType: string }) {
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchTeamData = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch(url)
+        if (!response.ok) {
+          throw new Error('Failed to fetch team data')
+        }
+        const data = await response.json()
+        
+        // Transform sheet data into TeamMember objects
+        const members: TeamMember[] = data.values.map((row: string[]) => ({
+          name: row[1] || '',
+          role: row[2] || '',
+          image: row[3] || '',
+          team: row[0]?.toLowerCase() || ''
+        }))
+
+        setTeamMembers(members)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchTeamData()
+  }, [])
+
+  // Filter members by team type
+  const filteredMembers = teamMembers.filter(
+    member => member.team.toLowerCase() === teamType.toLowerCase()
+  )
+
+  if (loading) {
+    return (
+      <Card className="min-h-[400px] flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-cyan-600" />
+      </Card>
+    )
+  }
+
+  if (error) {
+    return (
+      <Card className="min-h-[400px] flex items-center justify-center">
+        <div className="text-center space-y-2">
+          <p className="text-red-500">Failed to load team members</p>
+          <p className="text-sm text-gray-500">{error}</p>
+        </div>
+      </Card>
+    )
+  }
+
+  if (filteredMembers.length === 0) {
+    return (
+      <Card className="min-h-[400px] flex items-center justify-center">
+        <p className="text-gray-500">No team members found for {teamType} team</p>
+      </Card>
+    )
+  }
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="capitalize">{teamType} Team</CardTitle>
+    <Card className="">
+      <CardHeader className="space-y-4">
+        <Badge variant="secondary" className="w-fit">
+          Our Team
+        </Badge>
+        <CardTitle className="text-3xl font-bold capitalize">
+          {teamType} Team
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {teamMembers[teamType].map((member) => (
-            <Card key={member.name}>
+          {filteredMembers.map((member) => (
+            <Card 
+              key={member.name} 
+              className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <CardHeader className="text-center">
-                <Avatar className="h-24 w-24 mx-auto">
-                  <AvatarImage src={member.image} alt={member.name} />
-                  <AvatarFallback>{member.name[0]}</AvatarFallback>
+                <Avatar className="h-32 w-32 mx-auto ring-4 ring-white shadow-lg transition-transform duration-300 group-hover:scale-105">
+                  <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+                  <AvatarFallback className="bg-gradient-to-br from-cyan-500 to-blue-600 text-white text-xl">
+                    {member.name.split(' ').map(n => n[0]).join('')}
+                  </AvatarFallback>
                 </Avatar>
-                <CardTitle className="mt-4">{member.name}</CardTitle>
+                <CardTitle className="mt-4 text-xl font-semibold transition-colors duration-300 group-hover:text-cyan-600">
+                  {member.name}
+                </CardTitle>
               </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-cyan-600 text-primary">{member.role}</p>
+              <CardContent className="text-center pb-6">
+                <Badge variant="secondary" className="transition-all duration-300 group-hover:bg-cyan-100 group-hover:text-cyan-700">
+                  {member.role}
+                </Badge>
               </CardContent>
             </Card>
           ))}
@@ -56,3 +125,5 @@ export function TeamSection({ teamType }: { teamType: keyof typeof teamMembers }
     </Card>
   )
 }
+
+export default TeamSection;

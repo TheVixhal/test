@@ -26,7 +26,9 @@ import {
   Map,
   Users,
   Clock,
-  Star
+  Star,
+ 
+  ClubIcon
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -62,7 +64,7 @@ const routes: RouteItem[] = [
       { label: "2021-2022", icon: Star, href: "https://sites.google.com/student.onlinedegree.iitm.ac.in/nallamala/house-council/2021-22" }
     ]
   },
-  { label: "Club Leaders", icon: Building2, href: "/club-leaders" },
+  { label: "Club Leaders", icon: ClubIcon, href: "/club-leaders" },
   { label: "Admin Panel", icon: Settings, href: "/admin" },
 ];
 

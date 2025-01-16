@@ -15,6 +15,7 @@ type Event = {
   endDate: Date
   status: string
   registrationLink: string
+  imageUrl?: string // New field for image
 }
 
 const container = {
@@ -34,6 +35,8 @@ const item = {
 
 const EventCard = ({ event }: { event: Event }) => {
   const [isHovered, setIsHovered] = useState(false)
+  const [imageError, setImageError] = useState(false)
+  
   const statusColors = {
     upcoming: "bg-blue-500",
     ongoing: "bg-green-500",
@@ -47,6 +50,19 @@ const EventCard = ({ event }: { event: Event }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
+        {/* Image Section */}
+        {event.imageUrl && !imageError && (
+          <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
+            <img
+              src={event.imageUrl}
+              alt={event.title}
+              onError={() => setImageError(true)}
+              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          </div>
+        )}
+
         <div className={`absolute top-4 right-4 px-2 py-1 rounded-full text-xs text-white ${statusColors[event.status as keyof typeof statusColors]}`}>
           {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
         </div>
@@ -103,6 +119,7 @@ const LoadingState = () => (
     {[1, 2, 3].map((i) => (
       <Card key={i} className="relative overflow-hidden">
         <div className="animate-pulse">
+          <div className="h-48 bg-primary/20 rounded-t-lg" /> {/* Added image placeholder */}
           <CardHeader>
             <div className="h-8 w-8 bg-primary/20 rounded" />
             <div className="h-6 w-3/4 bg-primary/20 rounded" />
@@ -130,7 +147,7 @@ export function EventList({ status }: { status: string }) {
       try {
         const SHEET_ID = '1lLRZ6J28xRl2Oztszko1VIbQ01ZNA9FmNgWewOKA6ck'
         const API_KEY = 'AIzaSyCxtw0FYRoykePA-RSHMWLFlMg218bR_gQ'
-        const RANGE = 'Events!A2:G'
+        const RANGE = 'Events!A2:H' // Updated range to include image column
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`
 
         const response = await fetch(url)
@@ -145,7 +162,8 @@ export function EventList({ status }: { status: string }) {
           startDate: new Date(row[2]),
           endDate: new Date(row[3]),
           status: row[4].toLowerCase(),
-          registrationLink: row[5] || ''
+          registrationLink: row[5] || '',
+          imageUrl: row[6] || '' // New image URL field
         }))
 
         setEvents(transformedEvents)
