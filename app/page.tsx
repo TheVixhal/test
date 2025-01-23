@@ -102,7 +102,7 @@ const historyMilestones: HistoryMilestone[] = [
   {
     year: 2023,
     title: "Global Recognition",
-    description: "Our alumni network spread across continents, bringing international acclaim.",
+    description: "Our alumni network spread across India, ",
     icon: "🌏"
   }
 ];
@@ -266,9 +266,9 @@ const HouseHistory: React.FC = () => {
                      border border-indigo-500/20"
         >
           <p className="text-white text-lg leading-relaxed">
-            Today, Nallamala House stands as a cornerstone of academic excellence and cultural diversity. 
-            Named after the ancient Nallamala forest range, we embody the strength, resilience, and natural 
-            harmony that the region represents.
+          The Nallamala (also called the Nallamala Range) are a section of the Eastern Ghats which forms the eastern boundary of Rayalaseema region of the state of Andhra. The Nallamala Forests are the largest stretch of undisturbed forest in South India.
+
+The cool breeze, lush greenery and the entrancing picturesque forests make it one of the best eco-tourist spots in South India where nature’s ethereal symphony can be heard. Away from the maddening crowds, concrete jungles and noises of engines, it is home to the Chenchu Tribe as well as to a diverse range of flora and fauna.
           </p>
         </motion.div>
       </div>
