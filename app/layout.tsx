@@ -95,7 +95,7 @@ export default function RootLayout({
         >
           <div className="flex h-screen">
             <Sidebar />
-            <div className="ml-20 flex-1 flex flex-col">
+            <div className="sm:ml-20 ml-1 flex-1 flex flex-col">
               <Navbar />
               <main className="flex-1 bg-background">
                 {children}

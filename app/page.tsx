@@ -111,7 +111,7 @@ const communities: Community[] = [
   {
     title: "Coding: Shunya",
     members: 150,
-    image: "https://plus.unsplash.com/premium_photo-1685086785054-d047cdc0e525?q=80&w=1932&auto=format&fit=crop",
+    image: "https://mathspp.com/blog/the-most-obscure-hello-world-program/thumbnail.webp",
   },
   {
     title: "Chess: Grand Master Guild",
@@ -122,6 +122,11 @@ const communities: Community[] = [
     title: "AI-ML: AIDW",
     members: 100,
     image: "https://plus.unsplash.com/premium_photo-1683121710572-7723bd2e235d?q=80&w=1932&auto=format&fit=crop",
+  },
+  {
+    title: "Chapter & Verses",
+    members: 100,
+    image: "https://images.unsplash.com/photo-1634276933388-e4bca1f31bec?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
@@ -275,11 +280,11 @@ const FeaturedClubs = () => {
   return (
     <section className="space-y-8">
       <header className="flex items-center">
-        <Trophy className="w-8 h-8 text-indigo-600 mr-3" />
+        <Trophy className="w-8 h-8 text-indigo-600 mr-2" />
         <h2 className="text-3xl font-bold">Featured Clubs</h2>
       </header>
       
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {communities.map((community, index) => (
           <motion.div
             key={index}

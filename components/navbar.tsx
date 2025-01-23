@@ -25,7 +25,7 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
           </Button>
         )}
         <Building className="h-8 w-8 mr-2 hidden md:block" />
-        <h1 className="text-xl font-bold mr-8">Nallamala</h1>
+        <h1 className="text-xl font-bold mr-8 sm:ml-5 ml-8">Nallamala</h1>
         <div className="flex-1">
           <form>
             <div className="relative">

@@ -100,7 +100,7 @@ export default function Sidebar(): JSX.Element {
                   "py-4 text-lg"
                 )}
               >
-                <route.icon className={cn("h-6 w-6", !isCollapsed && "mr-4")} />
+                <route.icon className={cn("h-6 w-6", !isCollapsed && "sm:mr-4 mr-2")} />
                 {!isCollapsed && (
                   <div className="flex items-center justify-between w-full">
                     {route.label}
@@ -136,7 +136,7 @@ export default function Sidebar(): JSX.Element {
             prefetch={true}
             onClick={() => setIsCollapsed(true)} // Collapse the sidebar on click
           >
-            <route.icon className={cn("h-6 w-6", !isCollapsed && "mr-4")} />
+            <route.icon className={cn("h-6 w-6", !isCollapsed && "sm:mr-4 mr-2")} />
             {!isCollapsed && route.label}
           </Link>
         </Button>
@@ -148,7 +148,7 @@ export default function Sidebar(): JSX.Element {
     <div
       className={cn(
         "z-50 fixed flex flex-col h-full bg-card text-card-foreground transition-all duration-300 shadow shadow-white",
-        isCollapsed ? "w-16" : "w-64"
+        isCollapsed ? "w-1 sm:w-16" : "w-64"
       )}
     >
       <div className="p-4 flex items-center">
@@ -169,7 +169,7 @@ export default function Sidebar(): JSX.Element {
           aria-label={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
         >
           {isCollapsed ? (
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-8 sm:h-4 sm:w-4 w-8" />
           ) : (
             <ChevronLeft className="h-4 w-4" />
           )}
