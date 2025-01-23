@@ -327,7 +327,7 @@ const HeroSection = () => {
   return (
     <div className="relative rounded-xl w-full h-screen max-h-[90vh] overflow-hidden">
       <VideoPlayer />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
+      <div className="absolute" />
       <div className="absolute inset-0 flex items-center justify-center text-center px-4">
         <div className="max-w-4xl space-y-8">
           <motion.div
@@ -354,7 +354,7 @@ const HeroSection = () => {
               href="https://www.instagram.com/housenallamala/"
               icon="instagram.svg"
               label="Follow us"
-              hoverColor="purple"
+              hoverColor="cyan"
             />
             <SocialButton
               href="https://www.linkedin.com/company/nallamala-house-iit-madras"
