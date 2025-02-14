@@ -412,7 +412,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold">Events</h2>
               
           </header>
-          <EventList status={"ongoing"} />
+          
           <EventList status={"upcoming"} />
           </section>
           
