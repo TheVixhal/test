@@ -413,6 +413,7 @@ export default function Home() {
               
           </header>
           <EventList status={"ongoing"} />
+          <EventList status={"upcoming"} />
           </section>
           
           <FeaturedClubs />
