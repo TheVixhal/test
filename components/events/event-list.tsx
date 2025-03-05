@@ -112,8 +112,8 @@ const EventCard = ({ event }: { event: Event }) => {
               className="w-full group/button relative overflow-hidden"
               onClick={() => window.open(event.ytLink, '_blank')}
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Register Now 
+              <span className="relative z-10 flex items-center justify-center gap-2 ml-5">
+                YouTube
                 <ExternalLink className="h-4 w-4 transform group-hover/button:translate-x-1 transition-transform" />
               </span>
               <div className="absolute inset-0 bg-primary/10 transform translate-y-full group-hover/button:translate-y-0 transition-transform" />
