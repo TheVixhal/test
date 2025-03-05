@@ -15,6 +15,7 @@ type Event = {
   endDate: Date
   status: string
   registrationLink: string
+  ytLink: string
   imageUrl?: string // New field for image
 }
 
@@ -107,6 +108,16 @@ const EventCard = ({ event }: { event: Event }) => {
               </span>
               <div className="absolute inset-0 bg-primary/10 transform translate-y-full group-hover/button:translate-y-0 transition-transform" />
             </Button>
+            <Button 
+              className="w-full group/button relative overflow-hidden"
+              onClick={() => window.open(event.ytLink, '_blank')}
+            >
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                Register Now 
+                <ExternalLink className="h-4 w-4 transform group-hover/button:translate-x-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 bg-primary/10 transform translate-y-full group-hover/button:translate-y-0 transition-transform" />
+            </Button>
           </CardFooter>
         )}
       </Card>
@@ -147,7 +158,7 @@ export function EventList({ status }: { status: string }) {
       try {
         const SHEET_ID = '1lLRZ6J28xRl2Oztszko1VIbQ01ZNA9FmNgWewOKA6ck'
         const API_KEY = 'AIzaSyCxtw0FYRoykePA-RSHMWLFlMg218bR_gQ'
-        const RANGE = 'Events!A2:H' // Updated range to include image column
+        const RANGE = 'Events!A2:I' // Updated range to include image column
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`
 
         const response = await fetch(url)
@@ -164,6 +175,7 @@ export function EventList({ status }: { status: string }) {
           status: row[4].toLowerCase(),
           registrationLink: row[5] || '',
           imageUrl: row[6] || '' // New image URL field
+          ytLink: row[7] || ''
         }))
 
         setEvents(transformedEvents)
