@@ -95,7 +95,7 @@ const EventCard = ({ event }: { event: Event }) => {
           </div>
         </CardContent>
 
-        {event.registrationLink && event.status !== 'completed' && (
+        {event.registrationLink && (
           <CardFooter className="pt-4">
             <Button 
               className="w-full group/button relative overflow-hidden"
