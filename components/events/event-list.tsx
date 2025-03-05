@@ -174,7 +174,7 @@ export function EventList({ status }: { status: string }) {
           endDate: new Date(row[3]),
           status: row[4].toLowerCase(),
           registrationLink: row[5] || '',
-          imageUrl: row[6] || '' // New image URL field
+          imageUrl: row[6] || '', // New image URL field
           ytLink: row[7] || ''
         }))
 
