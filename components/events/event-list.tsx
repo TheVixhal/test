@@ -109,7 +109,7 @@ const EventCard = ({ event }: { event: Event }) => {
               <div className="absolute inset-0 bg-primary/10 transform translate-y-full group-hover/button:translate-y-0 transition-transform" />
             </Button>
             <Button 
-              className="w-full group/button relative overflow-hidden"
+              className="w-full group/button relative overflow-hidden ml-8"
               onClick={() => window.open(event.ytLink, '_blank')}
             >
               <span className="relative z-10 flex items-center justify-center gap-2 ml-5">
