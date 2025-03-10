@@ -97,28 +97,34 @@ const EventCard = ({ event }: { event: Event }) => {
         </CardContent>
 
         {event.registrationLink && (
-          <CardFooter className="pt-4">
-            <Button 
-              className="w-full group/button relative overflow-hidden"
-              onClick={() => window.open(event.registrationLink, '_blank')}
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Register Now 
-                <ExternalLink className="h-4 w-4 transform group-hover/button:translate-x-1 transition-transform" />
-              </span>
-              <div className="absolute inset-0 bg-primary/10 transform translate-y-full group-hover/button:translate-y-0 transition-transform" />
-            </Button>
-            <Button 
-              className="w-full group/button relative overflow-hidden"
-              onClick={() => window.open(event.ytLink, '_blank')}
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2 ml-5">
-                YouTube
-                <ExternalLink className="h-4 w-4 transform group-hover/button:translate-x-1 transition-transform" />
-              </span>
-              <div className="absolute inset-0 bg-primary/10 transform translate-y-full group-hover/button:translate-y-0 transition-transform" />
-            </Button>
-          </CardFooter>
+          <CardFooter className="pt-4 flex gap-2">
+  {event.status === "upcoming" && event.registrationLink && (
+    <Button
+      className="w-full group/button relative overflow-hidden"
+      onClick={() => window.open(event.registrationLink, "_blank")}
+    >
+      <span className="relative z-10 flex items-center justify-center gap-2">
+        Register Now
+        <ExternalLink className="h-4 w-4 transform group-hover/button:translate-x-1 transition-transform" />
+      </span>
+      <div className="absolute inset-0 bg-primary/10 transform translate-y-full group-hover/button:translate-y-0 transition-transform" />
+    </Button>
+  )}
+
+  {(event.status === "completed" || event.status === "upcoming") && event.ytLink && (
+    <Button
+      className="w-full group/button relative overflow-hidden"
+      onClick={() => window.open(event.ytLink, "_blank")}
+    >
+      <span className="relative z-10 flex items-center justify-center gap-2">
+        YouTube
+        <ExternalLink className="h-4 w-4 transform group-hover/button:translate-x-1 transition-transform" />
+      </span>
+      <div className="absolute inset-0 bg-primary/10 transform translate-y-full group-hover/button:translate-y-0 transition-transform" />
+    </Button>
+  )}
+</CardFooter>
+
         )}
       </Card>
     </motion.div>
