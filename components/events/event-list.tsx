@@ -37,15 +37,12 @@ const item = {
 const EventCard = ({ event }: { event: Event }) => {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
-  
+
   const statusColors = {
     upcoming: "bg-blue-500",
     ongoing: "bg-green-500",
     completed: "bg-gray-500"
   }
-
-  // Determine if we should show registration button based on status
-  const showRegistration = event.status !== "completed" && event.registrationLink;
 
   return (
     <motion.div variants={item}>
@@ -70,7 +67,7 @@ const EventCard = ({ event }: { event: Event }) => {
         <div className={`absolute top-4 right-4 px-2 py-1 rounded-full text-xs text-white ${statusColors[event.status as keyof typeof statusColors]}`}>
           {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
         </div>
-        
+
         <CardHeader className="space-y-4">
           <div className="flex items-start gap-4">
             <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary/20 transition-colors">
@@ -99,8 +96,8 @@ const EventCard = ({ event }: { event: Event }) => {
           </div>
         </CardContent>
 
-        <CardFooter className="pt-4">
-          {showRegistration && (
+        {event.registrationLink && (
+          <CardFooter className="pt-4">
             <Button 
               className="w-full group/button relative overflow-hidden"
               onClick={() => window.open(event.registrationLink, '_blank')}
@@ -111,10 +108,8 @@ const EventCard = ({ event }: { event: Event }) => {
               </span>
               <div className="absolute inset-0 bg-primary/10 transform translate-y-full group-hover/button:translate-y-0 transition-transform" />
             </Button>
-          )}
-          {event.ytLink && (
             <Button 
-              className={`w-full group/button relative overflow-hidden ${showRegistration ? 'ml-8' : ''}`}
+              className="w-full group/button relative overflow-hidden"
               onClick={() => window.open(event.ytLink, '_blank')}
             >
               <span className="relative z-10 flex items-center justify-center gap-2 ml-5">
@@ -123,8 +118,8 @@ const EventCard = ({ event }: { event: Event }) => {
               </span>
               <div className="absolute inset-0 bg-primary/10 transform translate-y-full group-hover/button:translate-y-0 transition-transform" />
             </Button>
-          )}
-        </CardFooter>
+          </CardFooter>
+        )}
       </Card>
     </motion.div>
   )
@@ -168,9 +163,9 @@ export function EventList({ status }: { status: string }) {
 
         const response = await fetch(url)
         if (!response.ok) throw new Error('Failed to fetch events')
-        
+
         const data = await response.json()
-        
+
         const transformedEvents: Event[] = data.values.map((row: any[], index: number) => ({
           id: index.toString(),
           title: row[0],
